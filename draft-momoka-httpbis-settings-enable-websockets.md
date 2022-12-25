@@ -28,7 +28,59 @@ author:
 
 
 normative:
+  HTTP:
+    title: "HTTP Semantics"
+    date: 2022-04
+    seriesinfo:
+      RFC: 9110
+      DOI: 10.17487/RFC9110
+    author:
+      -
+          ins: R. Fielding
+          name: Roy T. Fielding
+          org: Adobe
+          role: editor
+      -
+          ins: M. Nottingham
+          name: Mark Nottingham
+          org: Fastly
+          role: editor
+      -
+          ins: J. Reschke
+          name: Julian Reschke
+          org: greenbytes
+          role: editor
 
+  HTTP2:
+    display: HTTP/2
+    title: "HTTP/2"
+    date: 2022-04
+    seriesinfo:
+      RFC: 9113
+      DOI: 10.17487/RFC9113
+    author:
+      -
+          fullname: Martin Thomson
+          org: Mozilla
+          role: editor
+      -
+          fullname: Cory Benfield
+          org: Apple Inc.
+          role: editor
+
+  HTTP3:
+    display: HTTP/3
+    title: "Hypertext Transfer Protocol Version 3 (HTTP/3)"
+    date: 2022-04
+    seriesinfo:
+      RFC: 9114
+      DOI: 10.17487/RFC9114
+    author:
+      -
+          ins: M. Bishop
+          name: Mike Bishop
+          org: Akamai
+          role: editor
 
 
 
@@ -46,9 +98,9 @@ This document proposes the addition of a new HTTP settings parameter, SETTINGS_E
 
 # Introduction
 
-The mechanisms for running the WebSocket protocol over a single stream of an HTTP/2 and HTTP/3 connection are defined in {{?RFC8441}} and {{?RFC9220}}. For bootstrapping WebSockets from HTTP/2 and HTTP/3, the extended CONNECT mechanism is used. Support for the extended CONNECT is advertised using HTTP/2 and HTTP/3 settings SETTINGS_ENABLE_CONNECT_PROTOCOL. However, the support of extended CONNECT does not necessarily indicate support for WebSockets over that HTTP connection. Other protocols such as {{?I-D.draft-ietf-webtrans-overview}} also use extended CONNECT and will be sending SETTINGS_ENABLE_CONNECT_PROTOCOL settings parameters as well.
+The mechanisms for running the WebSocket protocol {{!RFC6455}} over a single stream of an HTTP/2 and HTTP/3 connection are defined in {{!RFC8441}} and {{!RFC8441}}. For bootstrapping WebSockets from HTTP/2 and HTTP/3, the extended CONNECT mechanism is used. Support for the extended CONNECT is advertised using HTTP/2 and HTTP/3 settings SETTINGS_ENABLE_CONNECT_PROTOCOL. However, the support of extended CONNECT does not necessarily indicate support for WebSockets over that HTTP connection. Other protocols such as {{?I-D.draft-ietf-webtrans-overview}} also use extended CONNECT and will be sending SETTINGS_ENABLE_CONNECT_PROTOCOL settings parameters as well.
 
-If the server sends SETTINGS_ENABLE_CONNECT_PROTOCOL because it supports extended CONNECT but not bootstrapping WebSockets over that HTTP connection, the client sending a WebSocket handshake request will result in a 501 response and falling back to HTTP/1 will be needed.
+If the server sends SETTINGS_ENABLE_CONNECT_PROTOCOL because it supports extended CONNECT but not bootstrapping WebSockets over that HTTP connection, the client sending a WebSocket handshake request will result in a response of 501 (Not Implemented) status code (Section 15.6.2 of {{HTTP}}) and the client would beedn to fall back to HTTP/1.
 
 
 # SETTINGS_ENABLE_WEBSOCKETS settigs parameter for h2 nad h3
@@ -59,12 +111,12 @@ The SETTINGS_ENABLE_WEBSOCKETS parameter would allow the client to determine in 
 
 # Security Considerations
 
-This document introduces no new security considerations beyond those discussed in {{?RFC8441}} and {{?RFC9220}}.
+This document introduces no new security considerations beyond those discussed in {{!RFC8441}} and {{!RFC8441}}.
 
 # IANA Considerations
 
 ## HTTP3
-This document registers a new setting in the "HTTP/3 Settings" registry (Section 11.2.2 of {{?RFC9114}}).
+This document registers a new setting in the "HTTP/3 Settings" registry (Section 11.2.2 of {{HTTP3}}).
 
 Value: TBD
 Setting Name: SETTINGS_ENABLE_WEBSOCKETS
@@ -75,7 +127,7 @@ Change Controller: IETF
 Contact: HTTP Working Group (ietf-http-wg@w3.org)
 
 ## HTTP2
-This document registers an entry in the "HTTP/2 Settings" registry (Section 11.3 of {{?RFC9113}}).
+This document registers an entry in the "HTTP/2 Settings" registry (Section 11.3 of {{HTTP2}}).
 
 Code: TBD
 Name: SETTINGS_ENABLE_ENABLE_WEBSOCKETS
