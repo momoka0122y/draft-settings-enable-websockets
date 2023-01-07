@@ -115,7 +115,7 @@ value of the parameter MUST be 0 or 1.
 A sender MUST NOT send a SETTINGS_ENABLE_WEBSOCKETS parameter
 with the value of 0 after previously sending a value of 1.
 
-If the server supports bootstrapping WebSockets over the HTTP connection, it SHOULD include the SETTINGS_ENABLE_WEBSOCKETS parameter in the SETTINGS frame with a value of 1. If the server does not support WebSockets over HTTP/2 or HTTP/3, it will not have the parameter in the SETTINGS frame or send it with a value of 0.
+If the server supports bootstrapping WebSockets over the HTTP connection, it would include the SETTINGS_ENABLE_WEBSOCKETS parameter in the SETTINGS frame with a value of 1. If the server does not support WebSockets over HTTP/2 or HTTP/3, it will not have the parameter in the SETTINGS frame or send it with a value of 0.
 
 A client MUST not send this setting parameter.
 Receipt of this parameter by a server does not have any impact.
