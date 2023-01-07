@@ -91,16 +91,24 @@ informative:
 
 --- abstract
 
-This document proposes a new HTTP settings parameter, SETTINGS_ENABLE_WEBSOCKETS. This parameter indicates whether the server supports bootstrapping WebSockets over the established connection.
+This document proposes a new HTTP settings parameter, SETTINGS_ENABLE_WEBSOCKETS.
+This parameter indicates whether the server supports bootstrapping WebSockets over the established connection.
 
 
 --- middle
 
 # Introduction
 
-The mechanisms for running the WebSocket protocol {{!RFC6455}} over a single stream of an HTTP/2 and HTTP/3 connection is defined in {{!RFC8441}} and {{!RFC9220}}. The extended CONNECT mechanism is used for bootstrapping WebSockets from HTTP/2 and HTTP/3. Support for the extended CONNECT is advertised using HTTP/2 and HTTP/3 settings parameter SETTINGS_ENABLE_CONNECT_PROTOCOL. However, the support of extended CONNECT does not necessarily indicate support for WebSockets over that HTTP connection. Other protocols such as {{?WEBTRANSPORT=I-D.draft-ietf-webtrans-overview}} also use extended CONNECT and send SETTINGS_ENABLE_CONNECT_PROTOCOL settings parameters as well.
+The mechanisms for running the WebSocket protocol {{!RFC6455}} over a single stream of an HTTP/2 and HTTP/3 connection is defined in {{!RFC8441}} and {{!RFC9220}}.
+The extended CONNECT mechanism is used for bootstrapping WebSockets from HTTP/2 and HTTP/3.
+Support for the extended CONNECT mechanism is advertised using HTTP/2 and HTTP/3 settings parameter SETTINGS_ENABLE_CONNECT_PROTOCOL.
 
-Suppose the server supports extended CONNECT but not bootstrapping WebSockets over that HTTP connection. In this case, the client sending a WebSocket handshake request will result in a response of 501 (Not Implemented) status code (Section 15.6.2 of {{HTTP}}), and the client would need to fall back to trying the WebSocket handshake over HTTP/1.
+However, the support of extended CONNECT does not necessarily indicate support for WebSockets over that HTTP connection.
+Other protocols such as {{?WEBTRANSPORT=I-D.draft-ietf-webtrans-overview}} also use extended CONNECT and send SETTINGS_ENABLE_CONNECT_PROTOCOL settings parameters as well.
+
+Suppose the server supports extended CONNECT but not bootstrapping WebSockets over that HTTP connection.
+In this case, the client sending a WebSocket handshake request will result in a response of 501 (Not Implemented) status code (Section 15.6.2 of {{HTTP}}),
+and the client would need to fall back to trying the WebSocket handshake over HTTP/1.
 
 This is why a SETTINGS_ENABLE_WEBSOCKETS settings parameter is needed.
 
@@ -115,16 +123,18 @@ value of the parameter MUST be 0 or 1, with 0 being the default.
 A sender MUST NOT send a SETTINGS_ENABLE_WEBSOCKETS parameter
 with the value of 0 after previously sending a value of 1.
 
-If the server supports bootstrapping WebSockets over the HTTP connection, it SHOULD include the SETTINGS_ENABLE_WEBSOCKETS parameter in the SETTINGS frame with a value of 1.
+If the server supports bootstrapping WebSockets over the HTTP connection,
+it SHOULD include the SETTINGS_ENABLE_WEBSOCKETS parameter in the SETTINGS frame with a value of 1.
 If the server does not support bootstrapping WebSockets over the HTTP connection it SHOULD send it with a value of 0.
 
 A client MUST not send this setting parameter.
 Receipt of this parameter by a server does not have any impact.
 
 
-The SETTINGS_ENABLE_WEBSOCKETS parameter would allow the client to determine in advance whether the server supports WebSockets over the connection for HTTP/2 or HTTP/3, allowing the client to avoid sending unnecessary WebSocket handshake requests on HTTP/2 or HTTP/3 connections that do not support WebSockets.
+The SETTINGS_ENABLE_WEBSOCKETS parameter would allow the client to determine in advance whether the server supports WebSockets over the connection for HTTP/2 or HTTP/3.
+This allows the client to avoid sending unnecessary WebSocket handshake requests on HTTP connections that do not support WebSockets.
 
-This will improve compatibility with other extended CONNECT-based protocols.
+This mechanism will improve compatibility with other extended CONNECT-based protocols.
 
 For compatibility with past implementations which do not use this parameter,
  clients MAY initiate a WebSocket request without the receipt of this parameter.
