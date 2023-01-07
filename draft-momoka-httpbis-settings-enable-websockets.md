@@ -125,6 +125,9 @@ The SETTINGS_ENABLE_WEBSOCKETS parameter would allow the client to determine in 
 
 This will improve compatibility with other extended CONNECT-based protocols.
 
+For compatibility with past implementations which do not use this parameter,
+ clients MAY initiate a WebSocket request without the receipt of this parameter.
+
 
 # Security Considerations
 
