@@ -146,8 +146,22 @@ This document introduces no new security considerations beyond those discussed i
 
 # IANA Considerations
 
-## HTTP3
-This document registers a new entry in the "HTTP/3 Settings" registry (Section 11.2.2 of {{HTTP3}}).
+## HTTP/2 Setting
+IANA is requested to register the following entry in the "HTTP/2 Settings"
+registry maintained at <[](https://www.iana.org/assignments/http2-parameters)>:
+
+Code: TBD
+
+Name: SETTINGS_ENABLE_WEBSOCKETS
+
+Initial Value: 0
+
+Specification: This document
+
+
+## HTTP/3 Setting
+IANA is requested to register the following entry in the "HTTP/3 Settings"
+registry maintained at <[](https://www.iana.org/assignments/http3-parameters)>:
 
 Value: TBD
 
@@ -155,30 +169,13 @@ Setting Name: SETTINGS_ENABLE_WEBSOCKETS
 
 Default: 0
 
-Status: permanent
+Status: provisional
 
-Specification: This document
+Reference: This document
 
-Change Controller: IETF
+Change Controller: Momoka Yamamoto (IETF if this document is approved)
 
-Contact: HTTP Working Group (ietf-http-wg@w3.org)
-
-## HTTP2
-This document registers a new entry in the "HTTP/2 Settings" registry (Section 11.1 of {{HTTP2}}).
-
-Code: TBD
-
-Name: SETTINGS_ENABLE_ENABLE_WEBSOCKETS
-
-Default: 0
-
-Status: permanent
-
-Specification: This document
-
-Change Controller: IETF
-
-Contact: HTTP Working Group (ietf-http-wg@w3.org)
+Contact: Momoka Yamamoto (HTTP_WG; HTTP working group; ietf-http-wg@w3.org if this document is approved)
 
 --- back
 
