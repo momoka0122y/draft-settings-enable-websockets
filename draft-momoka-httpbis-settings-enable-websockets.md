@@ -113,31 +113,48 @@ and the client would need to fall back to trying the WebSocket handshake over HT
 This is why a SETTINGS_ENABLE_WEBSOCKETS settings parameter is needed.
 
 
-# SETTINGS_ENABLE_WEBSOCKETS settigs parameter for H2 and H3
-This document adds a new SETTINGS parameter to those defined by
-{{HTTP3}} Section 11.2.2 and {{HTTP2}} Section 11.3.
+# The SETTINGS_ENABLE_WEBSOCKETS Setting
+This document defines the SETTINGS_ENABLE_WEBSOCKETS parameter for HTTP/2 and HTTP/3.
+A server can send this setting to inform a client that it supports bootstrapping WebSockets over the HTTP connection.
 
-The new parameter name is SETTINGS_ENABLE_WEBSOCKETS.
 The value of the parameter MUST be 0 or 1, with 0 being the default.
-
-A sender MUST NOT send a SETTINGS_ENABLE_WEBSOCKETS parameter
-with the value of 0 after previously sending a value of 1.
 
 If the server supports bootstrapping WebSockets over the HTTP connection,
 it SHOULD include the SETTINGS_ENABLE_WEBSOCKETS parameter in the SETTINGS frame with a value of 1.
 If the server does not support bootstrapping WebSockets over the HTTP connection it SHOULD send the parameter with a value of 0.
 
-A client MUST not send this setting parameter.
+A server MUST NOT send a SETTINGS_ENABLE_WEBSOCKETS parameter
+with the value of 0 after previously sending a value of 1.
+
+A client MUST NOT send this setting parameter.
 Receipt of this parameter by a server does not have any impact.
 
 
-The SETTINGS_ENABLE_WEBSOCKETS parameter would allow the client to determine in advance whether the server supports WebSockets over the connection for HTTP/2 or HTTP/3.
-This allows the client to avoid sending unnecessary WebSocket handshake requests on HTTP connections that do not support WebSockets.
+The SETTINGS_ENABLE_WEBSOCKETS parameter is an explicit signal about the server
+support for bootstrapping WebSockets on the connection. Where a server declares
+it does not support WebSockets, clients can avoid sending WebSocket handshake
+requests that would fail. This saves unnecessary work for both client and
+server, and potentially reduces delays. For instance, a client that learns an
+HTTP/2 or HTTP/3 connection does not support WebSockets via the setting, could
+instead attempt to create a WebSocket using the HTTP/1.1 Upgrade mechanism at
+the immediate moment it is required.
 
-This mechanism will improve compatibility with other extended CONNECT-based protocols.
+Other protocols also rely on the extended CONNECT extension for bootstrapping.
+This mechanism provides clients with a stronger signal about whether the
+WebSocket protocol is supported on a connection. This can help improve
+compatibility with other extended CONNECT-based protocols by avoiding the client
+making assumption about the supported protocols.
 
-For compatibility with past implementations which do not use this parameter,
- clients MAY initiate a WebSocket request without the receipt of this parameter.
+Clients that do not implement this extension will not be able to use its signal.
+In order to support legacy deployments, clients MAY initiate a WebSocket request
+when they receive SETTINGS_ENABLE_WEBSOCKETS with a value of 0, or if the
+parameter is omitted from received settings. Such requests could fail,
+introducing additional latency, which this extension is intended to help avoid.
+
+A server that sends SETTINGS_ENABLE_WEBSOCKETS with a value of 0 or omits the
+parameter MUST NOT treat reception of the a WebSocket request as a stream or
+connection error. Instead, the server can reject the request with a suitable
+status code.
 
 
 # Security Considerations
