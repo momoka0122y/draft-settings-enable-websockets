@@ -108,8 +108,8 @@ Other protocols such as {{?WEBTRANSPORT=I-D.draft-ietf-webtrans-overview}} also 
 
 Suppose the server supports Extended CONNECT and has a wss::// URL, but does not support
 bootstrapping WebSockets over this HTTP connection.
-In this case, a client trying to initiate a WebSocket handshake using Extended CONNECT will fail,
-and the client would need to fall back to trying the WebSocket handshake over HTTP/1.
+In this case, a client attempting to initiate a WebSocket handshake using Extended CONNECT will fail,
+and the client would need to create a WebSocket connection using the HTTP/1.1 Upgrade mechanism.
 
 This is why a SETTINGS_ENABLE_WEBSOCKETS settings parameter is needed.
 
