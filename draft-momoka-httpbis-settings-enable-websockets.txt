@@ -1,0 +1,249 @@
+
+
+
+
+HTTP                                             山本 桃歌 (M. Yamamoto)
+Internet-Draft                      The University of Tokyo/WIDE Project
+Updates: 8441, 9220 (if approved)                        25 January 2023
+Intended status: Standards Track                                        
+Expires: 29 July 2023
+
+
+  SETTINGS_ENABLE_WEBSOCKETS settings parameter for HTTP/2 and HTTP/3
+         draft-momoka-httpbis-settings-enable-websockets-latest
+
+Abstract
+
+   This document proposes a new HTTP settings parameter,
+   SETTINGS_ENABLE_WEBSOCKETS.  This parameter indicates whether the
+   server supports bootstrapping WebSockets over the established
+   connection.
+
+Discussion Venues
+
+   This note is to be removed before publishing as an RFC.
+
+   Discussion of this document takes place on the HTTP Working Group
+   mailing list (ietf-http-wg@w3.org), which is archived at
+   https://lists.w3.org/Archives/Public/ietf-http-wg/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/momoka0122y/draft-settings-enable-websockets.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 29 July 2023.
+
+Copyright Notice
+
+   Copyright (c) 2023 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  The SETTINGS_ENABLE_WEBSOCKETS Setting
+   3.  Security Considerations
+   4.  IANA Considerations
+     4.1.  HTTP/2 Setting
+     4.2.  HTTP/3 Setting
+   5.  References
+     5.1.  Normative References
+     5.2.  Informative References
+   Acknowledgments
+   Author's Address
+
+1.  Introduction
+
+   The mechanisms for running the WebSocket protocol [RFC6455] over a
+   single stream of an HTTP/2 and HTTP/3 connection is defined in
+   [RFC8441] and [RFC9220].  The extended CONNECT mechanism is used for
+   bootstrapping WebSockets from HTTP/2 and HTTP/3.  Support for the
+   extended CONNECT mechanism is advertised using HTTP/2 and HTTP/3
+   settings parameter SETTINGS_ENABLE_CONNECT_PROTOCOL.
+
+   However, the support of extended CONNECT does not necessarily
+   indicate support for WebSockets over that HTTP connection.  Other
+   protocols such as [WEBTRANSPORT] also use extended CONNECT and send
+   SETTINGS_ENABLE_CONNECT_PROTOCOL settings parameters as well.
+
+   Suppose the server supports extended CONNECT but not bootstrapping
+   WebSockets over that HTTP connection.  In this case, the client
+   sending a WebSocket handshake request will result in a response of
+   501 (Not Implemented) status code (Section 15.6.2 of [HTTP]), and the
+   client would need to fall back to trying the WebSocket handshake over
+   HTTP/1.
+
+   This is why a SETTINGS_ENABLE_WEBSOCKETS settings parameter is
+   needed.
+
+2.  The SETTINGS_ENABLE_WEBSOCKETS Setting
+
+   This document defines the SETTINGS_ENABLE_WEBSOCKETS parameter for
+   HTTP/2 and HTTP/3.  A server can send this setting to inform a client
+   that it supports bootstrapping WebSockets over the HTTP connection.
+
+   The value of the parameter MUST be 0 or 1, with 0 being the default.
+
+   If the server supports bootstrapping WebSockets over the HTTP
+   connection, it SHOULD include the SETTINGS_ENABLE_WEBSOCKETS
+   parameter in the SETTINGS frame with a value of 1.  If the server
+   does not support bootstrapping WebSockets over the HTTP connection it
+   SHOULD send the parameter with a value of 0.
+
+   A server MUST NOT send a SETTINGS_ENABLE_WEBSOCKETS parameter with
+   the value of 0 after previously sending a value of 1.
+
+   A client MUST NOT send this setting parameter.  Receipt of this
+   parameter by a server does not have any impact.
+
+   The SETTINGS_ENABLE_WEBSOCKETS parameter is an explicit signal about
+   the server support for bootstrapping WebSockets on the connection.
+   Where a server declares it does not support WebSockets, clients can
+   avoid sending WebSocket handshake requests that would fail.  This
+   saves unnecessary work for both client and server, and potentially
+   reduces delays.  For instance, a client that learns an HTTP/2 or
+   HTTP/3 connection does not support WebSockets via the setting, could
+   instead attempt to create a WebSocket using the HTTP/1.1 Upgrade
+   mechanism at the immediate moment it is required.
+
+   Other protocols also rely on the extended CONNECT extension for
+   bootstrapping.  This mechanism provides clients with a stronger
+   signal about whether the WebSocket protocol is supported on a
+   connection.  This can help improve compatibility with other extended
+   CONNECT-based protocols by avoiding the client making assumption
+   about the supported protocols.
+
+   Clients that do not implement this extension will not be able to use
+   its signal.  In order to support legacy deployments, clients MAY
+   initiate a WebSocket request when they receive
+   SETTINGS_ENABLE_WEBSOCKETS with a value of 0, or if the parameter is
+   omitted from received settings.  Such requests could fail,
+   introducing additional latency, which this extension is intended to
+   help avoid.
+
+   A server that sends SETTINGS_ENABLE_WEBSOCKETS with a value of 0 or
+   omits the parameter MUST NOT treat reception of the a WebSocket
+   request as a stream or connection error.  Instead, the server can
+   reject the request with a suitable status code.
+
+3.  Security Considerations
+
+   This document introduces no new security considerations beyond those
+   discussed in [RFC8441].
+
+4.  IANA Considerations
+
+4.1.  HTTP/2 Setting
+
+   IANA is requested to register the following entry in the "HTTP/2
+   Settings" registry maintained at <https://www.iana.org/assignments/
+   http2-parameters>:
+
+   Code: TBD
+
+   Name: SETTINGS_ENABLE_WEBSOCKETS
+
+   Initial Value: 0
+
+   Specification: This document
+
+4.2.  HTTP/3 Setting
+
+   IANA is requested to register the following entry in the "HTTP/3
+   Settings" registry maintained at <https://www.iana.org/assignments/
+   http3-parameters>:
+
+   Value: TBD
+
+   Setting Name: SETTINGS_ENABLE_WEBSOCKETS
+
+   Default: 0
+
+   Status: provisional
+
+   Reference: This document
+
+   Change Controller: Momoka Yamamoto (IETF if this document is
+   approved)
+
+   Contact: Momoka Yamamoto (HTTP_WG; HTTP working group; ietf-http-
+   wg@w3.org if this document is approved)
+
+5.  References
+
+5.1.  Normative References
+
+   [HTTP]     Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., "HTTP Semantics", RFC 9110, DOI 10.17487/RFC9110,
+              April 2022, <https://www.rfc-editor.org/rfc/rfc9110>.
+
+   [HTTP/2]   Thomson, M., Ed. and C. Benfield, Ed., "HTTP/2", RFC 9113,
+              DOI 10.17487/RFC9113, April 2022,
+              <https://www.rfc-editor.org/rfc/rfc9113>.
+
+   [HTTP/3]   Bishop, M., Ed., "Hypertext Transfer Protocol Version 3
+              (HTTP/3)", RFC 9114, DOI 10.17487/RFC9114, April 2022,
+              <https://www.rfc-editor.org/rfc/rfc9114>.
+
+   [RFC6455]  Fette, I. and A. Melnikov, "The WebSocket Protocol",
+              RFC 6455, DOI 10.17487/RFC6455, December 2011,
+              <https://www.rfc-editor.org/rfc/rfc6455>.
+
+   [RFC8441]  McManus, P., "Bootstrapping WebSockets with HTTP/2",
+              RFC 8441, DOI 10.17487/RFC8441, September 2018,
+              <https://www.rfc-editor.org/rfc/rfc8441>.
+
+   [RFC9220]  Hamilton, R., "Bootstrapping WebSockets with HTTP/3",
+              RFC 9220, DOI 10.17487/RFC9220, June 2022,
+              <https://www.rfc-editor.org/rfc/rfc9220>.
+
+5.2.  Informative References
+
+   [WEBTRANSPORT]
+              Vasiliev, V., "The WebTransport Protocol Framework", Work
+              in Progress, Internet-Draft, draft-ietf-webtrans-overview-
+              05, 24 January 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-
+              webtrans-overview-05>.
+
+Acknowledgments
+
+   TODO acknowledge people.
+
+   Thank you for reading this draft. :)
+
+Author's Address
+
+   Momoka Yamamoto
+   The University of Tokyo/WIDE Project
+   Japan
+   Email: momoka.my6@gmail.com
+
+   Additional contact information:
+
+      山本 桃歌
+      Japan
+      The University of Tokyo/WIDE Project

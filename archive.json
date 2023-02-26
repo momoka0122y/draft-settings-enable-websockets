@@ -1,0 +1,197 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-02-26T00:59:37.075171+00:00",
+  "repo": "momoka0122y/draft-settings-enable-websockets",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOIefdHc5aLfWe",
+      "title": "Is a client allowed to send SETTINGS_ENABLE_WEBSOCKETS?",
+      "url": "https://github.com/momoka0122y/draft-settings-enable-websockets/issues/1",
+      "state": "CLOSED",
+      "author": "bencebeky",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "The draft currently states:\r\n\r\n> Receipt of this parameter by a server does not have any impact.\r\n\r\nIs might be worth considering to state instead that a client MUST not send the setting.",
+      "createdAt": "2022-12-28T16:34:32Z",
+      "updatedAt": "2023-01-07T07:58:21Z",
+      "closedAt": "2023-01-07T07:58:21Z",
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 2,
+      "id": "PR_kwDOIefdHc5GnyQ-",
+      "title": "client MUST not send SETTINGS_ENABLE_WEBSOCKETS",
+      "url": "https://github.com/momoka0122y/draft-settings-enable-websockets/pull/2",
+      "state": "MERGED",
+      "author": "momoka0122y",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "resolve #1",
+      "createdAt": "2023-01-04T12:31:59Z",
+      "updatedAt": "2023-01-07T07:59:06Z",
+      "baseRepository": "momoka0122y/draft-settings-enable-websockets",
+      "baseRefName": "main",
+      "baseRefOid": "47e71c2908a04bab70a78d18a26ab8f9b5453872",
+      "headRepository": "momoka0122y/draft-settings-enable-websockets",
+      "headRefName": "ClientMustNot",
+      "headRefOid": "8a93299e4c68c82a89b12aa6efc8096cc7c55699",
+      "closedAt": "2023-01-07T07:58:20Z",
+      "mergedAt": "2023-01-07T07:58:20Z",
+      "mergedBy": "momoka0122y",
+      "mergeCommit": {
+        "oid": "bcee2e5107b620f43ff00487728d70c5e8d0850d"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOIefdHc5ILUtW",
+      "title": "Some rewording of section 2 for clarity",
+      "url": "https://github.com/momoka0122y/draft-settings-enable-websockets/pull/3",
+      "state": "MERGED",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I agree with all the design text in this section.\r\n\r\nI've tried to reword it to clarify things a bit, or add a little more explanation, as per my understanding. But if there's parts you disagree with, feel free to pick and choose from the PR.",
+      "createdAt": "2023-01-20T00:27:26Z",
+      "updatedAt": "2023-01-25T17:45:33Z",
+      "baseRepository": "momoka0122y/draft-settings-enable-websockets",
+      "baseRefName": "main",
+      "baseRefOid": "7a0d71c2b66f3e31fc6060832f75af5c780e60fb",
+      "headRepository": "LPardue/draft-settings-enable-websockets",
+      "headRefName": "rewording-and-editorials",
+      "headRefOid": "a01bcabcca49cbcabc109de9eb63e7e66cd9360e",
+      "closedAt": "2023-01-25T17:45:33Z",
+      "mergedAt": "2023-01-25T17:45:33Z",
+      "mergedBy": "momoka0122y",
+      "mergeCommit": {
+        "oid": "3eb573934e9fe3e6f75dff39eda15e09bc1e1427"
+      },
+      "comments": [
+        {
+          "author": "momoka0122y",
+          "authorAssociation": "OWNER",
+          "body": "> I agree with all the design text in this section.\r\n\r\nThank you for your words and thank you for your review.\r\n\r\n\r\nWill take action after reading this a few more times :)\r\n",
+          "createdAt": "2023-01-22T17:41:50Z",
+          "updatedAt": "2023-01-22T17:41:50Z"
+        },
+        {
+          "author": "momoka0122y",
+          "authorAssociation": "OWNER",
+          "body": "The last addition really makes it clear how people can benefit from this SETTINGS. Thank you.",
+          "createdAt": "2023-01-25T17:43:19Z",
+          "updatedAt": "2023-01-25T17:43:19Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOIefdHc5ILYwk",
+      "title": "Little tidy ups in IANA considerations",
+      "url": "https://github.com/momoka0122y/draft-settings-enable-websockets/pull/4",
+      "state": "MERGED",
+      "author": "LPardue",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-01-20T00:48:57Z",
+      "updatedAt": "2023-01-25T17:47:27Z",
+      "baseRepository": "momoka0122y/draft-settings-enable-websockets",
+      "baseRefName": "main",
+      "baseRefOid": "7a0d71c2b66f3e31fc6060832f75af5c780e60fb",
+      "headRepository": "LPardue/draft-settings-enable-websockets",
+      "headRefName": "tidyup-iana",
+      "headRefOid": "247a128abb7015189b756ef09a9a1d666bf6fbb0",
+      "closedAt": "2023-01-25T17:47:27Z",
+      "mergedAt": "2023-01-25T17:47:26Z",
+      "mergedBy": "momoka0122y",
+      "mergeCommit": {
+        "oid": "e9882c2716f2bef8edf8975e3785dd1f741dfaaf"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOIefdHc5Ks5JG",
+      "title": "erase 501 response part",
+      "url": "https://github.com/momoka0122y/draft-settings-enable-websockets/pull/5",
+      "state": "OPEN",
+      "author": "momoka0122y",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Erased the part about the 501 response error code because we do not know how servers will react when they do not support RFC8441 or 9221 and receive a request.",
+      "createdAt": "2023-02-24T13:35:54Z",
+      "updatedAt": "2023-02-24T14:09:55Z",
+      "baseRepository": "momoka0122y/draft-settings-enable-websockets",
+      "baseRefName": "main",
+      "baseRefOid": "e9882c2716f2bef8edf8975e3785dd1f741dfaaf",
+      "headRepository": "momoka0122y/draft-settings-enable-websockets",
+      "headRefName": "reword-1",
+      "headRefOid": "dadfa695aa2a526fe3b8a41fea5ba04a488eef0e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
