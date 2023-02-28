@@ -4,9 +4,9 @@
 
 HTTP                                             山本 桃歌 (M. Yamamoto)
 Internet-Draft                      The University of Tokyo/WIDE Project
-Updates: 8441, 9220 (if approved)                        25 January 2023
+Updates: 8441, 9220 (if approved)                       28 February 2023
 Intended status: Standards Track                                        
-Expires: 29 July 2023
+Expires: 1 September 2023
 
 
   SETTINGS_ENABLE_WEBSOCKETS settings parameter for HTTP/2 and HTTP/3
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 July 2023.
+   This Internet-Draft will expire on 1 September 2023.
 
 Copyright Notice
 
@@ -89,12 +89,12 @@ Table of Contents
    protocols such as [WEBTRANSPORT] also use extended CONNECT and send
    SETTINGS_ENABLE_CONNECT_PROTOCOL settings parameters as well.
 
-   Suppose the server supports extended CONNECT but not bootstrapping
-   WebSockets over that HTTP connection.  In this case, the client
-   sending a WebSocket handshake request will result in a response of
-   501 (Not Implemented) status code (Section 15.6.2 of [HTTP]), and the
-   client would need to fall back to trying the WebSocket handshake over
-   HTTP/1.
+   Suppose the server supports Extended CONNECT and has a wss::// URL,
+   but does not support bootstrapping WebSockets over this HTTP
+   connection.  In this case, a client attempting to initiate a
+   WebSocket handshake using Extended CONNECT will fail, and the client
+   would need to create a WebSocket connection using the HTTP/1.1
+   Upgrade mechanism.
 
    This is why a SETTINGS_ENABLE_WEBSOCKETS settings parameter is
    needed.
