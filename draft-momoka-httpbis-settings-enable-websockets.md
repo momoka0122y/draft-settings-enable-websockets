@@ -106,9 +106,11 @@ Support for the extended CONNECT mechanism is advertised using HTTP/2 and HTTP/3
 However, the support of extended CONNECT does not necessarily indicate support for WebSockets over that HTTP connection.
 Other protocols such as {{?WEBTRANSPORT=I-D.draft-ietf-webtrans-overview}} also use extended CONNECT and send SETTINGS_ENABLE_CONNECT_PROTOCOL settings parameters as well.
 
-Suppose the server supports extended CONNECT but not bootstrapping WebSockets over that HTTP connection.
-In this case, the client sending a WebSocket handshake request will result in a response of 501 (Not Implemented) status code (Section 15.6.2 of {{HTTP}}),
-and the client would need to fall back to trying the WebSocket handshake over HTTP/1.
+Suppose the server supports Extended CONNECT and has a wss::// URL, but does not
+support bootstrapping WebSockets over this HTTP connection.
+In this case, a client attempting to initiate a WebSocket handshake using
+Extended CONNECT will fail, and the client would need to create a WebSocket
+connection using the HTTP/1.1 Upgrade mechanism.
 
 This is why a SETTINGS_ENABLE_WEBSOCKETS settings parameter is needed.
 
