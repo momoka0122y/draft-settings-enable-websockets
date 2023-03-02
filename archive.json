@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-02-26T00:59:37.075171+00:00",
+  "timestamp": "2023-03-02T00:58:42.566253+00:00",
   "repo": "momoka0122y/draft-settings-enable-websockets",
   "labels": [
     {
@@ -172,24 +172,26 @@
       "id": "PR_kwDOIefdHc5Ks5JG",
       "title": "erase 501 response part",
       "url": "https://github.com/momoka0122y/draft-settings-enable-websockets/pull/5",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "momoka0122y",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Erased the part about the 501 response error code because we do not know how servers will react when they do not support RFC8441 or 9221 and receive a request.",
       "createdAt": "2023-02-24T13:35:54Z",
-      "updatedAt": "2023-02-24T14:09:55Z",
+      "updatedAt": "2023-02-28T04:35:03Z",
       "baseRepository": "momoka0122y/draft-settings-enable-websockets",
       "baseRefName": "main",
       "baseRefOid": "e9882c2716f2bef8edf8975e3785dd1f741dfaaf",
       "headRepository": "momoka0122y/draft-settings-enable-websockets",
       "headRefName": "reword-1",
       "headRefOid": "dadfa695aa2a526fe3b8a41fea5ba04a488eef0e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2023-02-28T04:35:02Z",
+      "mergedAt": "2023-02-28T04:35:02Z",
+      "mergedBy": "momoka0122y",
+      "mergeCommit": {
+        "oid": "13f65e0ddce20201baa648d789d8a326ef67265a"
+      },
       "comments": [],
       "reviews": []
     }
