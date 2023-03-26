@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-02T00:58:42.566253+00:00",
+  "timestamp": "2023-03-26T00:54:04.352980+00:00",
   "repo": "momoka0122y/draft-settings-enable-websockets",
   "labels": [
     {
@@ -64,6 +64,38 @@
       "createdAt": "2022-12-28T16:34:32Z",
       "updatedAt": "2023-01-07T07:58:21Z",
       "closedAt": "2023-01-07T07:58:21Z",
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOIefdHc5hkN4w",
+      "title": "The server must also send SETTINGS_ENABLE_CONNECT_PROTOCOL = 1",
+      "url": "https://github.com/momoka0122y/draft-settings-enable-websockets/issues/6",
+      "state": "OPEN",
+      "author": "momoka0122y",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-03-23T05:37:38Z",
+      "updatedAt": "2023-03-23T05:37:38Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOIefdHc5hkODe",
+      "title": "There should be no default value for the settigns parameter. ",
+      "url": "https://github.com/momoka0122y/draft-settings-enable-websockets/issues/7",
+      "state": "OPEN",
+      "author": "momoka0122y",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The nonexistence of the parameter means the client can not be sure if the server supports the protocol",
+      "createdAt": "2023-03-23T05:38:36Z",
+      "updatedAt": "2023-03-23T05:38:36Z",
+      "closedAt": null,
       "comments": []
     }
   ],
