@@ -4,9 +4,9 @@
 
 HTTP                                             山本 桃歌 (M. Yamamoto)
 Internet-Draft                      The University of Tokyo/WIDE Project
-Updates: 8441, 9220 (if approved)                       28 February 2023
+Updates: 8441, 9220 (if approved)                          30 March 2023
 Intended status: Standards Track                                        
-Expires: 1 September 2023
+Expires: 1 October 2023
 
 
   SETTINGS_ENABLE_WEBSOCKETS settings parameter for HTTP/2 and HTTP/3
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 September 2023.
+   This Internet-Draft will expire on 1 October 2023.
 
 Copyright Notice
 
@@ -64,14 +64,15 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
-   2.  The SETTINGS_ENABLE_WEBSOCKETS Setting
-   3.  Security Considerations
-   4.  IANA Considerations
-     4.1.  HTTP/2 Setting
-     4.2.  HTTP/3 Setting
-   5.  References
-     5.1.  Normative References
-     5.2.  Informative References
+   2.  SETTINGS_ENABLE_WEBSOCKETS Parameter
+   3.  SETTINGS_ENABLE_CONNECT_PROTOCOL Parameter
+   4.  Security Considerations
+   5.  IANA Considerations
+     5.1.  HTTP/2 Setting
+     5.2.  HTTP/3 Setting
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
    Acknowledgments
    Author's Address
 
@@ -99,13 +100,16 @@ Table of Contents
    This is why a SETTINGS_ENABLE_WEBSOCKETS settings parameter is
    needed.
 
-2.  The SETTINGS_ENABLE_WEBSOCKETS Setting
+2.  SETTINGS_ENABLE_WEBSOCKETS Parameter
 
    This document defines the SETTINGS_ENABLE_WEBSOCKETS parameter for
    HTTP/2 and HTTP/3.  A server can send this setting to inform a client
    that it supports bootstrapping WebSockets over the HTTP connection.
 
-   The value of the parameter MUST be 0 or 1, with 0 being the default.
+   The value of the parameter MUST be 0 or 1.
+
+   This parameter has no default value, as its absence indicates a lack
+   of information from the server.
 
    If the server supports bootstrapping WebSockets over the HTTP
    connection, it SHOULD include the SETTINGS_ENABLE_WEBSOCKETS
@@ -149,14 +153,19 @@ Table of Contents
    request as a stream or connection error.  Instead, the server can
    reject the request with a suitable status code.
 
-3.  Security Considerations
+3.  SETTINGS_ENABLE_CONNECT_PROTOCOL Parameter
+
+   A server which sends SETTINGS_ENABLE_WEBSOCKETS parameter MUST also
+   send the SETTINGS_ENABLE_CONNECT_PROTOCOL = 1.
+
+4.  Security Considerations
 
    This document introduces no new security considerations beyond those
    discussed in [RFC8441].
 
-4.  IANA Considerations
+5.  IANA Considerations
 
-4.1.  HTTP/2 Setting
+5.1.  HTTP/2 Setting
 
    IANA is requested to register the following entry in the "HTTP/2
    Settings" registry maintained at <https://www.iana.org/assignments/
@@ -166,11 +175,11 @@ Table of Contents
 
    Name: SETTINGS_ENABLE_WEBSOCKETS
 
-   Initial Value: 0
+   Initial Value: None
 
    Specification: This document
 
-4.2.  HTTP/3 Setting
+5.2.  HTTP/3 Setting
 
    IANA is requested to register the following entry in the "HTTP/3
    Settings" registry maintained at <https://www.iana.org/assignments/
@@ -180,7 +189,7 @@ Table of Contents
 
    Setting Name: SETTINGS_ENABLE_WEBSOCKETS
 
-   Default: 0
+   Default: None
 
    Status: provisional
 
@@ -192,9 +201,9 @@ Table of Contents
    Contact: Momoka Yamamoto (HTTP_WG; HTTP working group; ietf-http-
    wg@w3.org if this document is approved)
 
-5.  References
+6.  References
 
-5.1.  Normative References
+6.1.  Normative References
 
    [HTTP]     Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
               Ed., "HTTP Semantics", RFC 9110, DOI 10.17487/RFC9110,
@@ -220,7 +229,7 @@ Table of Contents
               RFC 9220, DOI 10.17487/RFC9220, June 2022,
               <https://www.rfc-editor.org/rfc/rfc9220>.
 
-5.2.  Informative References
+6.2.  Informative References
 
    [WEBTRANSPORT]
               Vasiliev, V., "The WebTransport Protocol Framework", Work
