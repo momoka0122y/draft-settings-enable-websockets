@@ -119,7 +119,10 @@ This is why a SETTINGS_ENABLE_WEBSOCKETS settings parameter is needed.
 This document defines the SETTINGS_ENABLE_WEBSOCKETS parameter for HTTP/2 and HTTP/3.
 A server can send this setting to inform a client that it supports bootstrapping WebSockets over the HTTP connection.
 
-The value of the parameter MUST be 0 or 1, with 0 being the default.
+The value of the parameter MUST be 0 or 1.
+
+This parameter has no default value, as its absence indicates a lack of
+information from the server.
 
 If the server supports bootstrapping WebSockets over the HTTP connection,
 it SHOULD include the SETTINGS_ENABLE_WEBSOCKETS parameter in the SETTINGS frame with a value of 1.
@@ -158,7 +161,7 @@ parameter MUST NOT treat reception of the a WebSocket request as a stream or
 connection error. Instead, the server can reject the request with a suitable
 status code.
 
-# The SETTINGS_ENABLE_CONNECT_PROTOCOL Setting
+# The SETTINGS_ENABLE_CONNECT_PROTOCOLma Setting
 A server which sends SETTINGS_ENABLE_WEBSOCKETS parameter MUST also send the
 SETTINGS_ENABLE_CONNECT_PROTOCOL = 1.
 
@@ -176,7 +179,7 @@ Code: TBD
 
 Name: SETTINGS_ENABLE_WEBSOCKETS
 
-Initial Value: 0
+Initial Value: None
 
 Specification: This document
 
@@ -189,7 +192,7 @@ Value: TBD
 
 Setting Name: SETTINGS_ENABLE_WEBSOCKETS
 
-Default: 0
+Default: None
 
 Status: provisional
 
