@@ -115,7 +115,7 @@ connection using the HTTP/1.1 Upgrade mechanism.
 This is why a SETTINGS_ENABLE_WEBSOCKETS settings parameter is needed.
 
 
-# The SETTINGS_ENABLE_WEBSOCKETS Setting
+# SETTINGS_ENABLE_WEBSOCKETS Parameter
 This document defines the SETTINGS_ENABLE_WEBSOCKETS parameter for HTTP/2 and HTTP/3.
 A server can send this setting to inform a client that it supports bootstrapping WebSockets over the HTTP connection.
 
@@ -161,7 +161,7 @@ parameter MUST NOT treat reception of the a WebSocket request as a stream or
 connection error. Instead, the server can reject the request with a suitable
 status code.
 
-# The SETTINGS_ENABLE_CONNECT_PROTOCOLma Setting
+# SETTINGS_ENABLE_CONNECT_PROTOCOL Parameter
 A server which sends SETTINGS_ENABLE_WEBSOCKETS parameter MUST also send the
 SETTINGS_ENABLE_CONNECT_PROTOCOL = 1.
 
