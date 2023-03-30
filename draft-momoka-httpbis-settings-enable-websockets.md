@@ -158,6 +158,9 @@ parameter MUST NOT treat reception of the a WebSocket request as a stream or
 connection error. Instead, the server can reject the request with a suitable
 status code.
 
+# The SETTINGS_ENABLE_CONNECT_PROTOCOL Setting
+A server which sends SETTINGS_ENABLE_WEBSOCKETS parameter MUST also send the
+SETTINGS_ENABLE_CONNECT_PROTOCOL = 1.
 
 # Security Considerations
 
