@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-26T00:54:04.352980+00:00",
+  "timestamp": "2023-04-02T00:51:41.814869+00:00",
   "repo": "momoka0122y/draft-settings-enable-websockets",
   "labels": [
     {
@@ -78,9 +78,17 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-03-23T05:37:38Z",
-      "updatedAt": "2023-03-23T05:37:38Z",
+      "updatedAt": "2023-03-30T02:31:39Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "momoka0122y",
+          "authorAssociation": "OWNER",
+          "body": "from Ilari Liusvaara\r\nhttps://mailarchive.ietf.org/arch/msg/httpbisa/wdXfseRCVqMANmd-yM-_giaBozI/",
+          "createdAt": "2023-03-30T02:31:39Z",
+          "updatedAt": "2023-03-30T02:31:39Z"
+        }
+      ]
     },
     {
       "number": 7,
@@ -94,9 +102,17 @@
       "labels": [],
       "body": "The nonexistence of the parameter means the client can not be sure if the server supports the protocol",
       "createdAt": "2023-03-23T05:38:36Z",
-      "updatedAt": "2023-03-23T05:38:36Z",
+      "updatedAt": "2023-03-30T02:31:32Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "momoka0122y",
+          "authorAssociation": "OWNER",
+          "body": "from Ilari Liusvaara\r\nhttps://mailarchive.ietf.org/arch/msg/httpbisa/wdXfseRCVqMANmd-yM-_giaBozI/",
+          "createdAt": "2023-03-30T02:31:32Z",
+          "updatedAt": "2023-03-30T02:31:32Z"
+        }
+      ]
     }
   ],
   "pulls": [
